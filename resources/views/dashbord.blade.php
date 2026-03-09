@@ -1,7 +1,4 @@
-<?php
-// dashboard.php - Page d'accueil
-include 'includes/header.php';
-?>
+@include('includes.header')
 
 <header class="header">
     <div class="page-title">
@@ -20,13 +17,13 @@ include 'includes/header.php';
 <div style="display: flex; justify-content: center; margin: 20px 0 30px 0;">
     <div style="position: relative; width: 80%; max-width: 800px;">
         <i class="bi bi-search" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 1.2rem;"></i>
-        <input type="text" 
-               id="globalSearch" 
-               placeholder="Rechercher un ticket, sous-traitant, client..." 
-               style="width: 100%; 
-                      padding: 18px 25px 18px 55px; 
-                      border: 2px solid #e2e8f0; 
-                      border-radius: 12px; 
+        <input type="text"
+               id="globalSearch"
+               placeholder="Rechercher un ticket, sous-traitant, client..."
+               style="width: 100%;
+                      padding: 18px 25px 18px 55px;
+                      border: 2px solid #e2e8f0;
+                      border-radius: 12px;
                       font-size: 1rem;
                       outline: none;
                       transition: all 0.3s ease;
@@ -85,7 +82,7 @@ include 'includes/header.php';
                     ['name' => 'Tizi Ouzou', 'green' => 65, 'red' => 35],
                     ['name' => 'Oran', 'green' => 90, 'red' => 25]
                 ];
-                
+
                 foreach ($zones as $zone) {
                     echo '<div class="bar-group">';
                     echo '<div class="bars">';
@@ -118,7 +115,7 @@ include 'includes/header.php';
                 ['nom' => 'Société C', 'statut' => 'Clôturé', 'classe' => 'status-cloture'],
                 ['nom' => 'Société D', 'statut' => 'En cours', 'classe' => 'status-en-cours']
             ];
-            
+
             foreach ($classements as $index => $item) {
                 echo '<div class="ranking-item">';
                 echo '<span class="rank-num">' . ($index + 1) . '</span>';
@@ -161,10 +158,10 @@ include 'includes/header.php';
                     ['num' => '19039', 'client' => 'Nadia K.', 'zone' => 'Tizi Ouzou', 'sous_traitant' => 'Société A', 'statut' => 'En cours', 'statut_class' => 'status-en-cours', 'sla' => 95],
                     ['num' => '19038', 'client' => 'Amine L.', 'zone' => 'Constantine', 'sous_traitant' => 'Société B', 'statut' => 'En retard', 'statut_class' => 'status-retard', 'sla' => 30]
                 ];
-                
+
                 foreach ($tickets as $ticket) {
                     $sla_color = $ticket['sla'] >= 90 ? '#10b981' : ($ticket['sla'] >= 70 ? '#f59e0b' : '#ef4444');
-                    
+
                     echo '<tr>';
                     echo '<td>' . $ticket['num'] . '</td>';
                     echo '<td>' . $ticket['client'] . '</td>';
@@ -191,15 +188,15 @@ function performSimpleSearch() {
     const resultsDiv = document.getElementById('searchResults');
     const resultsContent = document.getElementById('simpleSearchResultsContent');
     const resultCount = document.getElementById('simpleResultCount');
-    
+
     if (searchTerm.length < 2) {
         alert('Veuillez entrer au moins 2 caractères');
         return;
     }
-    
+
     // Simuler des résultats de recherche
     const searchResults = [];
-    
+
     // Données de recherche
     const ticketsData = [
         { type: 'ticket', id: '19042', title: 'Ticket #19042', description: 'Ahmed B. - Algiers', url: 'tickets.php?search=19042' },
@@ -208,14 +205,14 @@ function performSimpleSearch() {
         { type: 'ticket', id: '19039', title: 'Ticket #19039', description: 'Nadia K. - Tizi Ouzou', url: 'tickets.php?search=19039' },
         { type: 'ticket', id: '19038', title: 'Ticket #19038', description: 'Amine L. - Constantine', url: 'tickets.php?search=19038' }
     ];
-    
+
     const sousTraitantsData = [
         { type: 'sous-traitant', id: 'ST001', title: 'Société A', description: 'Alger Centre - 47 interventions', url: 'sous_traitants.php?search=Société A' },
         { type: 'sous-traitant', id: 'ST002', title: 'Société B', description: 'Oran - 32 interventions', url: 'sous_traitants.php?search=Société B' },
         { type: 'sous-traitant', id: 'ST003', title: 'Société C', description: 'Constantine - 28 interventions', url: 'sous_traitants.php?search=Société C' },
         { type: 'sous-traitant', id: 'ST004', title: 'Société D', description: 'Blida - 19 interventions', url: 'sous_traitants.php?search=Société D' }
     ];
-    
+
     const clientsData = [
         { type: 'client', id: 'CL001', title: 'Ahmed B.', description: 'Client résidentiel - Algiers', url: 'tickets.php?client=Ahmed' },
         { type: 'client', id: 'CL002', title: 'Entreprise XYZ', description: 'Client professionnel - Mostaganem', url: 'tickets.php?client=XYZ' },
@@ -223,16 +220,16 @@ function performSimpleSearch() {
         { type: 'client', id: 'CL004', title: 'Nadia K.', description: 'Client résidentiel - Tizi Ouzou', url: 'tickets.php?client=Nadia' },
         { type: 'client', id: 'CL005', title: 'Amine L.', description: 'Client résidentiel - Constantine', url: 'tickets.php?client=Amine' }
     ];
-    
+
     // Recherche dans toutes les données
     [...ticketsData, ...sousTraitantsData, ...clientsData].forEach(item => {
-        if (item.title.toLowerCase().includes(searchTerm) || 
+        if (item.title.toLowerCase().includes(searchTerm) ||
             item.description.toLowerCase().includes(searchTerm) ||
             item.id.toLowerCase().includes(searchTerm)) {
             searchResults.push(item);
         }
     });
-    
+
     // Afficher les résultats
     if (searchResults.length > 0) {
         let html = '';
@@ -241,7 +238,7 @@ function performSimpleSearch() {
             if (result.type === 'sous-traitant') icon = '👥';
             if (result.type === 'client') icon = '👤';
             if (result.type === 'ticket') icon = '🎫';
-            
+
             html += `
                 <a href="${result.url}" style="text-decoration: none; color: inherit;">
                     <div style="display: flex; align-items: center; gap: 15px; padding: 15px; border-bottom: 1px solid #edf2f7; transition: all 0.3s;">
@@ -259,7 +256,7 @@ function performSimpleSearch() {
                 </a>
             `;
         });
-        
+
         resultsContent.innerHTML = html;
         resultCount.innerText = searchResults.length + ' résultat(s)';
         resultsDiv.style.display = 'block';
@@ -271,4 +268,4 @@ function performSimpleSearch() {
 }
 </script>
 
-<?php include 'includes/footer.php'; ?>
+@include('includes.footer')

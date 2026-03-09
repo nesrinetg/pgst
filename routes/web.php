@@ -18,7 +18,7 @@ use App\Http\Controllers\Auth\LoginController;
 Route::get('/', function () {
     return view('welcome');
 });
-<<<<<<< HEAD
+
 Route::get('/login', function () {
     return view('authentification/login.php');
 });
@@ -51,7 +51,7 @@ Route::get('/gestion_utilisateurs', function () {
     return view('gestion_utilisateurs');
 })->name('gestion_utilisateurs.index');
 
-=======
+
 
 Route::get('/login', [LoginController::class, 'showLogin'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
@@ -61,4 +61,4 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/dashboard', function () {
     return view('dashbord');
 })->middleware('auth');
->>>>>>> de51f18613b11fd4075884ef68597ca3e04d0191
+

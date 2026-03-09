@@ -1,6 +1,6 @@
 <?php
 // dashboard.php - Page d'accueil
-include 'includes/header.php';
+include 'layouts/app.blade.php';
 ?>
 
 <header class="header">
@@ -76,25 +76,7 @@ include 'includes/header.php';
         <div class="graph-container">
             <div class="bar-chart">
                 <?php
-                // Données pour le graphique
-                $zones = [
-                    ['name' => 'Algiers', 'green' => 95, 'red' => 30],
-                    ['name' => 'Oran', 'green' => 120, 'red' => 45],
-                    ['name' => 'Blida', 'green' => 70, 'red' => 50],
-                    ['name' => 'Constantine', 'green' => 80, 'red' => 55],
-                    ['name' => 'Tizi Ouzou', 'green' => 65, 'red' => 35],
-                    ['name' => 'Oran', 'green' => 90, 'red' => 25]
-                ];
-                
-                foreach ($zones as $zone) {
-                    echo '<div class="bar-group">';
-                    echo '<div class="bars">';
-                    echo '<div class="bar-green" style="height: ' . $zone['green'] . 'px;"></div>';
-                    echo '<div class="bar-red" style="height: ' . $zone['red'] . 'px;"></div>';
-                    echo '</div>';
-                    echo '<span class="bar-label">' . $zone['name'] . '</span>';
-                    echo '</div>';
-                }
+               
                 ?>
             </div>
             <div class="legend">
@@ -112,22 +94,7 @@ include 'includes/header.php';
         </div>
         <div class="ranking-list">
             <?php
-            $classements = [
-                ['nom' => 'Société A', 'statut' => 'En cours', 'classe' => 'status-en-cours'],
-                ['nom' => 'Société B', 'statut' => 'En retard', 'classe' => 'status-retard'],
-                ['nom' => 'Société C', 'statut' => 'Clôturé', 'classe' => 'status-cloture'],
-                ['nom' => 'Société D', 'statut' => 'En cours', 'classe' => 'status-en-cours']
-            ];
-            
-            foreach ($classements as $index => $item) {
-                echo '<div class="ranking-item">';
-                echo '<span class="rank-num">' . ($index + 1) . '</span>';
-                echo '<div class="rank-info">';
-                echo '<span class="rank-name">' . $item['nom'] . '</span>';
-                echo '<span class="rank-status ' . $item['classe'] . '">' . $item['statut'] . '</span>';
-                echo '</div>';
-                echo '</div>';
-            }
+           
             ?>
         </div>
     </div>
@@ -154,33 +121,13 @@ include 'includes/header.php';
             </thead>
             <tbody>
                 <?php
-                $tickets = [
-                    ['num' => '19042', 'client' => 'Ahmed B.', 'zone' => 'Algiers', 'sous_traitant' => 'Société A', 'statut' => 'En cours', 'statut_class' => 'status-en-cours', 'sla' => 98],
-                    ['num' => '19041', 'client' => 'Entreprise XYZ', 'zone' => 'Mostaganem', 'sous_traitant' => 'Société B', 'statut' => 'En retard', 'statut_class' => 'status-retard', 'sla' => 45],
-                    ['num' => '19040', 'client' => 'Karim D.', 'zone' => 'Blida', 'sous_traitant' => 'Société C', 'statut' => 'Clôturé', 'statut_class' => 'status-cloture', 'sla' => 100],
-                    ['num' => '19039', 'client' => 'Nadia K.', 'zone' => 'Tizi Ouzou', 'sous_traitant' => 'Société A', 'statut' => 'En cours', 'statut_class' => 'status-en-cours', 'sla' => 95],
-                    ['num' => '19038', 'client' => 'Amine L.', 'zone' => 'Constantine', 'sous_traitant' => 'Société B', 'statut' => 'En retard', 'statut_class' => 'status-retard', 'sla' => 30]
-                ];
-                
-                foreach ($tickets as $ticket) {
-                    $sla_color = $ticket['sla'] >= 90 ? '#10b981' : ($ticket['sla'] >= 70 ? '#f59e0b' : '#ef4444');
-                    
-                    echo '<tr>';
-                    echo '<td>' . $ticket['num'] . '</td>';
-                    echo '<td>' . $ticket['client'] . '</td>';
-                    echo '<td>' . $ticket['client'] . '</td>';
-                    echo '<td>' . $ticket['zone'] . '</td>';
-                    echo '<td>' . $ticket['sous_traitant'] . '</td>';
-                    echo '<td><span class="status-badge ' . $ticket['statut_class'] . '">' . $ticket['statut'] . '</span></td>';
-                    echo '<td><span class="sla-dot" style="background:' . $sla_color . ';"></span> ' . $ticket['sla'] . '%</td>';
-                    echo '</tr>';
-                }
+               
                 ?>
             </tbody>
         </table>
     </div>
     <div class="footer-note">
-        <span>Superviser AT · 89% Taux de résolution</span>
+        <span>Superviser AT ·   % Taux de résolution</span>
     </div>
 </div>
 
@@ -271,4 +218,4 @@ function performSimpleSearch() {
 }
 </script>
 
-<?php include 'includes/footer.php'; ?>
+<?php include 'layouts/footer.blade.php'; ?>

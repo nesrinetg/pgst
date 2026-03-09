@@ -1,6 +1,6 @@
 <?php
 // dashboard.php - Page d'accueil
-include 'layouts/app.blade.php';
+include 'includes/header.php';
 ?>
 
 <header class="header">
@@ -20,13 +20,13 @@ include 'layouts/app.blade.php';
 <div style="display: flex; justify-content: center; margin: 20px 0 30px 0;">
     <div style="position: relative; width: 80%; max-width: 800px;">
         <i class="bi bi-search" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 1.2rem;"></i>
-        <input type="text" 
-               id="globalSearch" 
-               placeholder="Rechercher un ticket, sous-traitant, client..." 
-               style="width: 100%; 
-                      padding: 18px 25px 18px 55px; 
-                      border: 2px solid #e2e8f0; 
-                      border-radius: 12px; 
+        <input type="text"
+               id="globalSearch"
+               placeholder="Rechercher un ticket, sous-traitant, client..."
+               style="width: 100%;
+                      padding: 18px 25px 18px 55px;
+                      border: 2px solid #e2e8f0;
+                      border-radius: 12px;
                       font-size: 1rem;
                       outline: none;
                       transition: all 0.3s ease;
@@ -76,7 +76,25 @@ include 'layouts/app.blade.php';
         <div class="graph-container">
             <div class="bar-chart">
                 <?php
-               
+                // Données pour le graphique
+                $zones = [
+                    ['name' => 'Algiers', 'green' => 95, 'red' => 30],
+                    ['name' => 'Oran', 'green' => 120, 'red' => 45],
+                    ['name' => 'Blida', 'green' => 70, 'red' => 50],
+                    ['name' => 'Constantine', 'green' => 80, 'red' => 55],
+                    ['name' => 'Tizi Ouzou', 'green' => 65, 'red' => 35],
+                    ['name' => 'Oran', 'green' => 90, 'red' => 25]
+                ];
+                
+                foreach ($zones as $zone) {
+                    echo '<div class="bar-group">';
+                    echo '<div class="bars">';
+                    echo '<div class="bar-green" style="height: ' . $zone['green'] . 'px;"></div>';
+                    echo '<div class="bar-red" style="height: ' . $zone['red'] . 'px;"></div>';
+                    echo '</div>';
+                    echo '<span class="bar-label">' . $zone['name'] . '</span>';
+                    echo '</div>';
+                }
                 ?>
             </div>
             <div class="legend">
@@ -94,7 +112,22 @@ include 'layouts/app.blade.php';
         </div>
         <div class="ranking-list">
             <?php
-         
+            $classements = [
+                ['nom' => 'Société A', 'statut' => 'En cours', 'classe' => 'status-en-cours'],
+                ['nom' => 'Société B', 'statut' => 'En retard', 'classe' => 'status-retard'],
+                ['nom' => 'Société C', 'statut' => 'Clôturé', 'classe' => 'status-cloture'],
+                ['nom' => 'Société D', 'statut' => 'En cours', 'classe' => 'status-en-cours']
+            ];
+            
+            foreach ($classements as $index => $item) {
+                echo '<div class="ranking-item">';
+                echo '<span class="rank-num">' . ($index + 1) . '</span>';
+                echo '<div class="rank-info">';
+                echo '<span class="rank-name">' . $item['nom'] . '</span>';
+                echo '<span class="rank-status ' . $item['classe'] . '">' . $item['statut'] . '</span>';
+                echo '</div>';
+                echo '</div>';
+            }
             ?>
         </div>
     </div>
@@ -120,8 +153,29 @@ include 'layouts/app.blade.php';
                 </tr>
             </thead>
             <tbody>
-               
-               
+                <?php
+                $tickets = [
+                    ['num' => '19042', 'client' => 'Ahmed B.', 'zone' => 'Algiers', 'sous_traitant' => 'Société A', 'statut' => 'En cours', 'statut_class' => 'status-en-cours', 'sla' => 98],
+                    ['num' => '19041', 'client' => 'Entreprise XYZ', 'zone' => 'Mostaganem', 'sous_traitant' => 'Société B', 'statut' => 'En retard', 'statut_class' => 'status-retard', 'sla' => 45],
+                    ['num' => '19040', 'client' => 'Karim D.', 'zone' => 'Blida', 'sous_traitant' => 'Société C', 'statut' => 'Clôturé', 'statut_class' => 'status-cloture', 'sla' => 100],
+                    ['num' => '19039', 'client' => 'Nadia K.', 'zone' => 'Tizi Ouzou', 'sous_traitant' => 'Société A', 'statut' => 'En cours', 'statut_class' => 'status-en-cours', 'sla' => 95],
+                    ['num' => '19038', 'client' => 'Amine L.', 'zone' => 'Constantine', 'sous_traitant' => 'Société B', 'statut' => 'En retard', 'statut_class' => 'status-retard', 'sla' => 30]
+                ];
+                
+                foreach ($tickets as $ticket) {
+                    $sla_color = $ticket['sla'] >= 90 ? '#10b981' : ($ticket['sla'] >= 70 ? '#f59e0b' : '#ef4444');
+                    
+                    echo '<tr>';
+                    echo '<td>' . $ticket['num'] . '</td>';
+                    echo '<td>' . $ticket['client'] . '</td>';
+                    echo '<td>' . $ticket['client'] . '</td>';
+                    echo '<td>' . $ticket['zone'] . '</td>';
+                    echo '<td>' . $ticket['sous_traitant'] . '</td>';
+                    echo '<td><span class="status-badge ' . $ticket['statut_class'] . '">' . $ticket['statut'] . '</span></td>';
+                    echo '<td><span class="sla-dot" style="background:' . $sla_color . ';"></span> ' . $ticket['sla'] . '%</td>';
+                    echo '</tr>';
+                }
+                ?>
             </tbody>
         </table>
     </div>
@@ -137,15 +191,15 @@ function performSimpleSearch() {
     const resultsDiv = document.getElementById('searchResults');
     const resultsContent = document.getElementById('simpleSearchResultsContent');
     const resultCount = document.getElementById('simpleResultCount');
-    
+
     if (searchTerm.length < 2) {
         alert('Veuillez entrer au moins 2 caractères');
         return;
     }
-    
+
     // Simuler des résultats de recherche
     const searchResults = [];
-    
+
     // Données de recherche
     const ticketsData = [
         { type: 'ticket', id: '19042', title: 'Ticket #19042', description: 'Ahmed B. - Algiers', url: 'tickets.php?search=19042' },
@@ -154,14 +208,14 @@ function performSimpleSearch() {
         { type: 'ticket', id: '19039', title: 'Ticket #19039', description: 'Nadia K. - Tizi Ouzou', url: 'tickets.php?search=19039' },
         { type: 'ticket', id: '19038', title: 'Ticket #19038', description: 'Amine L. - Constantine', url: 'tickets.php?search=19038' }
     ];
-    
+
     const sousTraitantsData = [
         { type: 'sous-traitant', id: 'ST001', title: 'Société A', description: 'Alger Centre - 47 interventions', url: 'sous_traitants.php?search=Société A' },
         { type: 'sous-traitant', id: 'ST002', title: 'Société B', description: 'Oran - 32 interventions', url: 'sous_traitants.php?search=Société B' },
         { type: 'sous-traitant', id: 'ST003', title: 'Société C', description: 'Constantine - 28 interventions', url: 'sous_traitants.php?search=Société C' },
         { type: 'sous-traitant', id: 'ST004', title: 'Société D', description: 'Blida - 19 interventions', url: 'sous_traitants.php?search=Société D' }
     ];
-    
+
     const clientsData = [
         { type: 'client', id: 'CL001', title: 'Ahmed B.', description: 'Client résidentiel - Algiers', url: 'tickets.php?client=Ahmed' },
         { type: 'client', id: 'CL002', title: 'Entreprise XYZ', description: 'Client professionnel - Mostaganem', url: 'tickets.php?client=XYZ' },
@@ -169,16 +223,16 @@ function performSimpleSearch() {
         { type: 'client', id: 'CL004', title: 'Nadia K.', description: 'Client résidentiel - Tizi Ouzou', url: 'tickets.php?client=Nadia' },
         { type: 'client', id: 'CL005', title: 'Amine L.', description: 'Client résidentiel - Constantine', url: 'tickets.php?client=Amine' }
     ];
-    
+
     // Recherche dans toutes les données
     [...ticketsData, ...sousTraitantsData, ...clientsData].forEach(item => {
-        if (item.title.toLowerCase().includes(searchTerm) || 
+        if (item.title.toLowerCase().includes(searchTerm) ||
             item.description.toLowerCase().includes(searchTerm) ||
             item.id.toLowerCase().includes(searchTerm)) {
             searchResults.push(item);
         }
     });
-    
+
     // Afficher les résultats
     if (searchResults.length > 0) {
         let html = '';
@@ -187,7 +241,7 @@ function performSimpleSearch() {
             if (result.type === 'sous-traitant') icon = '👥';
             if (result.type === 'client') icon = '👤';
             if (result.type === 'ticket') icon = '🎫';
-            
+
             html += `
                 <a href="${result.url}" style="text-decoration: none; color: inherit;">
                     <div style="display: flex; align-items: center; gap: 15px; padding: 15px; border-bottom: 1px solid #edf2f7; transition: all 0.3s;">
@@ -205,7 +259,7 @@ function performSimpleSearch() {
                 </a>
             `;
         });
-        
+
         resultsContent.innerHTML = html;
         resultCount.innerText = searchResults.length + ' résultat(s)';
         resultsDiv.style.display = 'block';
@@ -217,4 +271,4 @@ function performSimpleSearch() {
 }
 </script>
 
-<?php include 'layouts/footer.blade.php';?>
+<?php include 'includes/footer.php'; ?>

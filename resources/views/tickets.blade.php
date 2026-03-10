@@ -1,6 +1,6 @@
 <?php
 // tickets.php - Page de gestion des tickets
-include 'includes/header.php';
+include 'layouts/app.blade.php';
 ?>
 
 <header class="header">
@@ -104,4 +104,4 @@ include 'includes/header.php';
     </div>
 </div>
 
-<?php include 'includes/footer.php'; ?>
+<?php include 'layouts/footer.blade.php';?>

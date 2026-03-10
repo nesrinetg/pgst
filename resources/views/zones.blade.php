@@ -1,6 +1,6 @@
 <?php
 // zones.php - Page de gestion des zones
-include 'includes/header.php';
+include 'layouts/app.blade.php';
 ?>
 
 <header class="header">
@@ -44,4 +44,4 @@ include 'includes/header.php';
     ?>
 </div>
 
-<?php include 'includes/footer.php'; ?>
+<?php include 'layouts/footer.blade.php';?>

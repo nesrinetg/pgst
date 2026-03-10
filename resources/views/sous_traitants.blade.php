@@ -1,6 +1,6 @@
 <?php
 // sous_traitants.php - Page de gestion des sous-traitants
-include 'includes/header.php';
+include 'layouts/app.blade.php';
 ?>
 
 <header class="header">
@@ -19,4 +19,4 @@ include 'includes/header.php';
     
 </div>
 
-<?php include 'includes/footer.php'; ?>
+<?php include 'layouts/footer.blade.php';?>

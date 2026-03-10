@@ -21,31 +21,31 @@ $current_page = basename($_SERVER['PHP_SELF']);
             <span>Plateforme de gestion des sous-traitants</span>
         </div>
         <nav class="nav-menu">
-            <a href="dashbord.php" class="nav-item <?php echo $current_page == 'dashbord.php' ? 'active' : ''; ?>">
+            <a href="dashbord.blade.php" class="nav-item <?php echo $current_page == 'dashbord.blade.php' ? 'active' : ''; ?>">
                 <span class="nav-icon">📊</span>
                 <span>Dashboard</span>
             </a>
-            <a href="sous_traitants.php" class="nav-item <?php echo $current_page == 'sous_traitants.php' ? 'active' : ''; ?>">
+            <a href="sous_traitants.blade.php" class="nav-item <?php echo $current_page == 'sous_traitants.blade.php' ? 'active' : ''; ?>">
                 <span class="nav-icon">👥</span>
                 <span>Sous-traitants</span>
             </a>
-            <a href="zones.php" class="nav-item <?php echo $current_page == 'zones.php' ? 'active' : ''; ?>">
+            <a href="zones.blade.php" class="nav-item <?php echo $current_page == 'zones.blade.php' ? 'active' : ''; ?>">
                 <span class="nav-icon">📍</span>
                 <span>Zones</span>
             </a>
-            <a href="tickets.php" class="nav-item <?php echo $current_page == 'tickets.php' ? 'active' : ''; ?>">
+            <a href="tickets.blade.php" class="nav-item <?php echo $current_page == 'tickets.blade.php' ? 'active' : ''; ?>">
                 <span class="nav-icon">🎫</span>
                 <span>Tickets</span>
             </a>
-            <a href="kpi_rapports.php" class="nav-item <?php echo $current_page == 'kpi_rapports.php' ? 'active' : ''; ?>">
+            <a href="kpi_rapports.blade.php" class="nav-item <?php echo $current_page == 'kpi_rapports.blade.php' ? 'active' : ''; ?>">
                 <span class="nav-icon">📈</span>
                 <span>KPI & Rapports</span>
             </a>
-            <a href="parametres.php" class="nav-item <?php echo $current_page == 'parametres.php' ? 'active' : ''; ?>">
+            <a href="parametres.blade.php" class="nav-item <?php echo $current_page == 'parametres.blade.php' ? 'active' : ''; ?>">
                 <span class="nav-icon">⚙️</span>
                 <span>Paramètres</span>
             </a>
-            <a href="gestion_utilisateurs.php" class="nav-item <?php echo $current_page == 'gestion_utilisateurs.php' ? 'active' : ''; ?>">
+            <a href="gestion_utilisateurs.blade.php" class="nav-item <?php echo $current_page == 'gestion_utilisateurs.blade.php' ? 'active' : ''; ?>">
                 <span class="nav-icon">👤</span>
                 <span>Gestion des utilisateurs</span>
             </a>

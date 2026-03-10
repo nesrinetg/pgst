@@ -1,6 +1,6 @@
 <?php
 // gestion_utilisateurs.php - Page de gestion des utilisateurs
-include 'includes/header.php';
+include 'layouts/app.blade.php';
 ?>
 
 <header class="header">
@@ -34,4 +34,4 @@ include 'includes/header.php';
     </table>
 </div>
 
-<?php include 'includes/footer.php'; ?>
+<?php include 'layouts/footer.blade.php';?>

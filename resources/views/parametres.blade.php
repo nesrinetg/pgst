@@ -1,6 +1,6 @@
 <?php
 // parametres.php - Page des paramètres
-include 'includes/header.php';
+include 'layouts/app.blade.php';
 ?>
 
 <header class="header">
@@ -32,4 +32,4 @@ include 'includes/header.php';
     </form>
 </div>
 
-<?php include 'includes/footer.php'; ?>
+<?php include 'layouts/footer.blade.php';?>

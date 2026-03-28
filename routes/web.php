@@ -5,7 +5,6 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ZonesController;
 
-<<<<<<< HEAD
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,18 +14,18 @@ use App\Http\Controllers\ZonesController;
 //////////////////////////
 // AUTH
 //////////////////////////
-=======
+
 // Page d'accueil
 Route::get('/', function () {
     return view('welcome');
 });
 
->>>>>>> 10d54e76819ca28acc8a153b1a54346683590c0c
+
 
 // Login
 Route::get('/login', [LoginController::class, 'showLogin'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
-<<<<<<< HEAD
+
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
@@ -96,7 +95,7 @@ Route::prefix('zones')->name('zones.')->middleware('auth')->group(function () {
     Route::delete('/{id}', [ZonesController::class, 'destroy'])->name('destroy');
 
 });
-=======
+
 
 // Logout
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -131,4 +130,4 @@ Route::get('/parametres', function () {
 Route::get('/gestion_utilisateurs', function () {
     return view('gestion_utilisateurs');
 })->middleware('auth')->name('gestion_utilisateurs.index');
->>>>>>> 10d54e76819ca28acc8a153b1a54346683590c0c
+

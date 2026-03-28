@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+<<<<<<< HEAD
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -44,15 +45,30 @@ class User extends Authenticatable
         'created_at',
         'updated_at',
         'deleted_at'
+=======
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class User extends Authenticatable
+{
+    protected $table = 'users';
+
+    protected $primaryKey = 'id';
+
+    public $incrementing = false; // UUID
+    protected $keyType = 'string';
+
+    protected $fillable = [
+        'nom',
+        'prenom',
+        'email',
+        'password_hash',
+        'role'
+>>>>>>> 10d54e76819ca28acc8a153b1a54346683590c0c
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password_hash',
+<<<<<<< HEAD
         'remember_token',
     ];
 
@@ -73,10 +89,16 @@ class User extends Authenticatable
      *
      * @return string
      */
+=======
+    ];
+
+    // 🔥 TRÈS IMPORTANT
+>>>>>>> 10d54e76819ca28acc8a153b1a54346683590c0c
     public function getAuthPassword()
     {
         return $this->password_hash;
     }
+<<<<<<< HEAD
 
     /**
      * Get the user's full name.
@@ -211,4 +233,6 @@ class User extends Authenticatable
     {
         return uniqid() . '_' . bin2hex(random_bytes(8));
     }
+=======
+>>>>>>> 10d54e76819ca28acc8a153b1a54346683590c0c
 }

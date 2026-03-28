@@ -18,8 +18,11 @@ public function up(): void
         $table->string('wilaya', 100);
         $table->string('commune', 100);
         $table->string('quartier', 100)->nullable();
+        $table->integer('nombre_techniciens')->default(0);
+        $table->integer('nombre_interventions')->default(0);
+        $table->timestamps();
 
-        $table->unique(['wilaya', 'commune', 'quartier'], 'uk_zone');
+       // $table->unique(['wilaya', 'commune', 'quartier'], 'uk_zone');
     });
 }
 
